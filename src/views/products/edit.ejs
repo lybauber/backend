@@ -1,0 +1,26 @@
+
+<div>
+
+    <h1>Edit Product</h1>
+
+    <form action="/products/<%= product.id %>?_method=PUT" method="post">
+        <label for="name">Product Name</label>
+        <input type="text" name="title" id="title" placeholder="product title" value="<%= product.title %>">
+        <label for="name">Product description</label>
+        <input type="text" name="description" id="description" placeholder="product description" value="<%= product.description %>">
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" placeholder="product price" value="<%= product.price %>">
+        <label for="price">Image</label>
+        <input type="text" id="image" name="image" placeholder="product image" value="<%= product.image %>">
+        <label for="price">Code</label>
+        <input type="number" id="code" name="code" placeholder="product code" value="<%= product.code %>">
+        <label for="price">Stock</label>
+        <input type="number" id="stock" name="stock" placeholder="product stock" value="<%= product.stock %>">
+        <label for="category">Select Category</label>
+        <input type="text" id="category" name="category" placeholder="product category" value="<%= product.category %>">
+        
+        <button>Edit Product</button>
+        <a href="/products/<%=product._id%>">Cancel Edit</a>
+    </form>
+
+</div>
