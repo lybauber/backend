@@ -121,7 +121,7 @@ async (req, res) => {})
 router.get('/githubcallback', passport.authenticate('github', {failureRedirect:'/login'}),
 async (req, res) => {
     req.session.user = req.user;
-    res.redirect('/login')
+    res.redirect('/profile')
 })
 
 router.get('/logout', (req, res) => {
