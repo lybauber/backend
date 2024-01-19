@@ -9,6 +9,8 @@ import session from "express-session";
 import methhodOverride from "method-override";
 import ejsMate from "ejs-mate";
 import MongoStore from "connect-mongo";
+import passport from "passport";
+import initializePassport from "./config/passport.config.js";
 
 
 
@@ -30,6 +32,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(methhodOverride('_method'))
 app.use(express.static(__dirname + '/public'));
 
+
+
 app.use(session({
     store: new MongoStore({
         mongoUrl: MONGO,
@@ -40,11 +44,14 @@ app.use(session({
     saveUninitialized: false,
 }))
 
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', viewsRouter);
-app.use('/', sessionsRouter);
-app.use('/', productRouter);
-app.use('/', cartRouter);
+app.use('/api/sessions', sessionsRouter);
+app.use('/api/', productRouter);
+app.use('/api/', cartRouter);
 
 
 
