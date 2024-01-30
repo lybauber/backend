@@ -5,7 +5,19 @@ const userSchema = new mongoose.Schema({
     last_name: String,
     email: String,
     age: Number,
-    password: String
+    password: String,
+    role:{
+        type: String,
+        default: 'user'
+    },
+    cart: {
+        type: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref:'users'
+            }
+        ]
+    }
 })
 
 const userModel = mongoose.model('users', userSchema)

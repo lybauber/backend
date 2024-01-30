@@ -3,7 +3,7 @@
 
     <h1>Edit Product</h1>
 
-    <form action="/products/<%= product.id %>?_method=PUT" method="post">
+    <form action="/api/products/<%= product.id %>?_method=PUT" method="post">
         <label for="name">Product Name</label>
         <input type="text" name="title" id="title" placeholder="product title" value="<%= product.title %>">
         <label for="name">Product description</label>
@@ -20,7 +20,7 @@
         <input type="text" id="category" name="category" placeholder="product category" value="<%= product.category %>">
         
         <button>Edit Product</button>
-        <a href="/products/<%=product._id%>">Cancel Edit</a>
+        <a href="/api/products/<%=product._id%>">Cancel Edit</a>
     </form>
 
 </div>

@@ -4,24 +4,24 @@
 
     <ul>
         <% for (let product of products) { %>
-            <li><a href="/products/<%=product._id%>"><%= product.title  %></a></li>
+            <li><a href="/api/products/<%=product._id%>"><%= product.title  %></a></li>
         <% } %>
     </ul>
     
     <div>
         <% if (products.hasPrevPage) { %>
-            <a href="/products?page=<%= products.prevPage %>">Prev Page</a>
+            <a href="/api/products?page=<%= products.prevPage %>">Prev Page</a>
             <% } %>
 
             <span>Page <%= products.page %> of <%= products.totalPages %></span>
 
         <% if (products.hasNextPage) {%>
-            <a href="/products?page=<%= products.nextpage %>">Next Page</a>
+            <a href="/api/products?page=<%= products.nextpage %>">Next Page</a>
             <% } %>
     </div>
 
 
 
 
-    <a href="/products/new">Add a new Poduct</a>
+    <a href="/api/products/new">Add a new Poduct</a>
 </div>

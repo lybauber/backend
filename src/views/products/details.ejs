@@ -12,9 +12,9 @@
         <li>Category: <%= product.category %></li>
     </ul>
 
-    <a href="/products">Back home</a>
-    <a href="/products/<%=product._id%>/edit">Edit Product</a>
-    <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+    <a href="/api/products">Back home</a>
+    <a href="/api/products/<%=product._id%>/edit">Edit Product</a>
+    <form action="/api/products/<%=product._id%>?_method=DELETE" method="POST">
         <button>Delete Product</button>
     </form>
 

@@ -24,7 +24,7 @@ router.get('/products/new', (req,res)=>{
 
 router.post('/products', async (req,res)=>{
     const newProduct = await productManager.createProduct(req.body);
-    res.redirect(`/products/${newProduct._id}`);
+    res.redirect(`/api/products/${newProduct._id}`);
 })
 
 router.get('/products/:id', async (req,res)=>{
@@ -44,14 +44,14 @@ router.get('/products/:id/edit', async (req,res)=>{
 router.put('/products/:id', async (req,res)=>{
     const {id} = req.params;
     const product = await productManager.updateProduct(id, req.body);
-    res.redirect(`/products/${product._id}`);
+    res.redirect(`/api/products/${product._id}`);
 
 })
 
 router.delete('/products/:id', async (req,res)=>{
     const {id} = req.params;
     const product = await productManager.deleteProduct(id);
-    res.redirect('/products');
+    res.redirect('/api/products');
 })
 
 

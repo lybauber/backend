@@ -34,7 +34,7 @@ const router = Router();
 //     });
 // })
 
-router.post('/register', passport.authenticate('register', {failureRedirect:"/api/sessions/failregister"}),
+router.post('/register', passport.authenticate('register', {passReqToCallback:true,session:false, failureRedirect:"/api/sessions/failregister", failureMessage:true}),
     async (req, res) => {
         res.send({
             status: 'success',

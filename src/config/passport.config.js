@@ -1,6 +1,7 @@
 import passport from "passport";
 import local from "passport-local";
 import userModel from "../dao/models/user.model.js";
+import cartsModel from "../dao/models/cart.models.js";
 import { createHash, isValidPassword } from "../utils.js";
 import GitHubStrategy from "passport-github2";
 
@@ -18,12 +19,17 @@ const initializePassport = () => {
                     console.log('User already exists');
                     return done(null, false);
                 }
+
+                const cart = await cartsModel.create({});
+
+
                 const newUser = {
                     first_name,
                     last_name,
                     email,
                     age,
-                    password: createHash(password)
+                    password: createHash(password),
+                    cart: cart._id
                 };
                 const result = await userModel.create(newUser);
                 return done(null, result);
