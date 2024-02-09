@@ -1,10 +1,11 @@
 import { Router } from "express";
-import CartsManager from "../dao/dbManagers/CartManagerDB.js";
+import cartController from "../controller/cart.controller.js";
+
 
 
 const router = Router();
 
-const cartManager = new CartsManager();
+const cartManager = new cartController();
 
 router.get("/carts", async (req, res) => {
     const carts = await cartManager.getCarts();

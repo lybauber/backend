@@ -5,8 +5,6 @@ import passport from 'passport';
 
 const router = Router();
 
-
-
 // router.post('/register', async (req, res) => {
 //     const {first_name, last_name, email, age, password} = req.body;
 
@@ -44,7 +42,6 @@ router.post('/register', passport.authenticate('register', {passReqToCallback:tr
 )
 
 router.get('/failregister', (req, res) => {
-    console.log('Fail Register');
     res.send({
         status: 'error',
         msg: 'User already exists'
@@ -71,7 +68,6 @@ router.post('/login', async (req, res) => {
             error: 'Invalid password'});        
     
     }
-
 
     req.session.user = {
         full_name: `${user.first_name} ${user.last_name}`,

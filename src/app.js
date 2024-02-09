@@ -11,17 +11,19 @@ import ejsMate from "ejs-mate";
 import MongoStore from "connect-mongo";
 import passport from "passport";
 import initializePassport from "./config/passport.config.js";
+import {config} from "./config/config.js";
 
 
 
+// const MONGO = "mongodb+srv://lybauber:colombia123@dbprueba.6vwlw9c.mongodb.net/ecommerce"
 
 
-const MONGO = "mongodb+srv://lybauber:colombia123@dbprueba.6vwlw9c.mongodb.net/ecommerce"
 
-const connection = mongoose.connect(MONGO);
-
-const PORT = 8080;
+// const PORT = 8080;
 const app = express();
+const PORT = config.server.port;
+
+const connection = mongoose.connect(config.mongo.url);
 
 app.engine('ejs', ejsMate);
 app.set("views", __dirname + '/views');
@@ -36,7 +38,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(session({
     store: new MongoStore({
-        mongoUrl: MONGO,
+        mongoUrl: config.mongo.url,
         ttl: 3600
     }),
     secret: 'CoderSecret',
