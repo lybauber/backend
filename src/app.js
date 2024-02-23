@@ -43,7 +43,12 @@ app.use(session({
     }),
     secret: 'CoderSecret',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    // cookie: {
+    //     httpOnly: true,
+    //     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    //     maxAge: 1000 * 60 * 60 * 24 * 7
+    // }
 }))
 
 initializePassport();
@@ -54,10 +59,6 @@ app.use('/', viewsRouter);
 app.use('/api/sessions', sessionsRouter);
 app.use('/api/', productRouter);
 app.use('/api/', cartRouter);
-
-
-
-
 
 
 

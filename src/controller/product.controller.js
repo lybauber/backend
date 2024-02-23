@@ -2,34 +2,53 @@ import ProductManagerDB from "../dao/dbManagers/ProductManagerDB.js"
 
 
 
+
 const productManager = new ProductManagerDB();
 
 
-class ProductController {
+export const index  = async (req, res) => {
+            const products = await productManager.getProducts();
+            res.render('products/index', { products});
+        
+  }
 
-    getProducts = async () => {
-        const products = await productManager.getProducts();
-        return products
-    }
-
-    createProduct = async (product) => {
-        const newProduct = await productManager.createProduct(product);
-        return newProduct;
-    }
-
-    getProductById = async (id) => {
-        const product = await productManager.getProductById(id);
-        return product;
-    }
-
-    updateProduct = async (id, product) => {
-        const updatedProduct = await productManager.updateProduct(id, product);
-        return updatedProduct;
-    }
-    deleteProduct = async (id) => {
-        const deletedProduct = await productManager.deleteProduct(id);
-        return deletedProduct; 
-    }
+export const renderNewForm =  (req,res)=>{
+    res.render('products/new');
 }
 
-export default ProductController;
+
+export const createProduct = async (req,res)=>{
+    const newProduct = await productManager.createProduct(req.body);
+    res.redirect(`/api/products/${newProduct._id}`);
+}
+       
+export const getProductById = async (req,res)=>{
+    const {id} = req.params;
+    const product = await productManager.getProductById(id);
+    res.render('products/details', {product});
+}
+
+
+export const renderEditForm = async (req,res)=>{
+    const {id} = req.params;
+    const product = await productManager.getProductById(id);
+    res.render('products/edit', {product});
+
+}
+
+
+export const updateProduct = async (req,res)=>{
+    const {id} = req.params;
+    const product = await productManager.updateProduct(id, req.body);
+    res.redirect(`/api/products/${product._id}`);
+}
+
+
+export const deleteProduct = async (req,res)=>{
+    const {id} = req.params;
+    const product = await productManager.deleteProduct(id);
+    res.redirect('/api/products');
+}
+
+  
+

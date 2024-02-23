@@ -34,10 +34,11 @@ const router = Router();
 
 router.post('/register', passport.authenticate('register', {passReqToCallback:true,session:false, failureRedirect:"/api/sessions/failregister", failureMessage:true}),
     async (req, res) => {
-        res.send({
-            status: 'success',
-            msg: 'User registered success'
-        })
+        // res.send({
+        //     status: 'success',
+        //     msg: 'User registered success'
+        // })
+        res.render('/login')       
     }
 )
 

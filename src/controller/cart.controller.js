@@ -3,16 +3,13 @@ import CartsManager from "../dao/dbManagers/CartManagerDB.js";
 const cartManager = new CartsManager();
 
 
-class cartController {
-    getCarts = async () => {
+export const getCarts = async () => {
         const carts = await cartManager.getCarts();
-        return carts;
+        res.send(carts);
     }
 
-    newCart = async () => {
-        const cart = await cartManager.newCart();
-        return cart; 
+export const  newCart = async () => {
+        const cart = await cartManager.createCart();
+        res.send(newCart);
     }
-}
 
-export default cartController;
